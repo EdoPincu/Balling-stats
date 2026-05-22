@@ -56,12 +56,26 @@ export default function MatchHistory() {
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '24px', marginBottom: '12px' }}>
                 <div style={{ textAlign: 'center' }}>
                   <div style={{ fontFamily: 'var(--font-retro)', fontSize: '8px', color: 'var(--primary)', marginBottom: '4px' }}>TEAM 1</div>
-                  <div style={{ fontFamily: 'var(--font-retro)', fontSize: '24px', color: 'var(--text-bright)' }}>{t1Score}</div>
+                  <div style={{ fontFamily: 'var(--font-retro)', fontSize: '24px', color: match.winner === 'team1' ? 'var(--accent)' : 'var(--text-bright)' }}>
+                    {t1Score}
+                  </div>
+                  {match.winner && (
+                    <div style={{ fontSize: '10px', color: match.winner === 'team1' ? 'var(--accent)' : 'var(--text-dim)', marginTop: '4px' }}>
+                      {match.winner === 'team1' ? '✓ WIN' : '✗ LOSS'}
+                    </div>
+                  )}
                 </div>
                 <div style={{ fontFamily: 'var(--font-retro)', fontSize: '10px', color: 'var(--text-dim)' }}>VS</div>
                 <div style={{ textAlign: 'center' }}>
                   <div style={{ fontFamily: 'var(--font-retro)', fontSize: '8px', color: 'var(--accent2)', marginBottom: '4px' }}>TEAM 2</div>
-                  <div style={{ fontFamily: 'var(--font-retro)', fontSize: '24px', color: 'var(--text-bright)' }}>{t2Score}</div>
+                  <div style={{ fontFamily: 'var(--font-retro)', fontSize: '24px', color: match.winner === 'team2' ? 'var(--accent)' : 'var(--text-bright)' }}>
+                    {t2Score}
+                  </div>
+                  {match.winner && (
+                    <div style={{ fontSize: '10px', color: match.winner === 'team2' ? 'var(--accent)' : 'var(--text-dim)', marginTop: '4px' }}>
+                      {match.winner === 'team2' ? '✓ WIN' : '✗ LOSS'}
+                    </div>
+                  )}
                 </div>
               </div>
 

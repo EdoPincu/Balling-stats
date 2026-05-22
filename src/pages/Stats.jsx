@@ -23,6 +23,7 @@ export default function Stats() {
   ];
 
   const sortOptions = [
+    { value: 'wins', label: 'W' },
     { value: 'points', label: 'PTS' },
     { value: 'assists', label: 'AST' },
     { value: 'rebounds', label: 'REB' },
@@ -98,6 +99,7 @@ export default function Stats() {
               <tr style={{ borderBottom: '2px solid var(--border)' }}>
                 <th style={{ textAlign: 'left', padding: '12px 8px', fontFamily: 'var(--font-retro)', fontSize: '9px', color: 'var(--text-dim)' }}>#</th>
                 <th style={{ textAlign: 'left', padding: '12px 8px', fontFamily: 'var(--font-retro)', fontSize: '9px', color: 'var(--text-dim)' }}>PLAYER</th>
+                <th style={{ textAlign: 'center', padding: '12px 8px', fontFamily: 'var(--font-retro)', fontSize: '9px', color: 'var(--accent)' }}>W/L</th>
                 <th style={{ textAlign: 'center', padding: '12px 8px', fontFamily: 'var(--font-retro)', fontSize: '9px', color: 'var(--text-dim)' }}>GP</th>
                 <th style={{ textAlign: 'center', padding: '12px 8px', fontFamily: 'var(--font-retro)', fontSize: '9px', color: 'var(--primary)' }}>PTS</th>
                 <th style={{ textAlign: 'center', padding: '12px 8px', fontFamily: 'var(--font-retro)', fontSize: '9px', color: 'var(--text-dim)' }}>AST</th>
@@ -121,6 +123,9 @@ export default function Stats() {
                   </td>
                   <td style={{ padding: '12px 8px' }}>
                     <div style={{ fontFamily: 'var(--font-main)', color: 'var(--text-bright)', fontSize: '15px' }}>{p.name}</div>
+                  </td>
+                  <td style={{ textAlign: 'center', padding: '12px 8px', color: 'var(--accent)' }}>
+                    <span style={{ color: 'var(--accent)' }}>{p.stats.wins}</span>-<span style={{ color: 'var(--danger)' }}>{p.stats.losses}</span>
                   </td>
                   <td style={{ textAlign: 'center', padding: '12px 8px', color: 'var(--text-dim)' }}>{p.stats.games}</td>
                   <td style={{ textAlign: 'center', padding: '12px 8px', fontFamily: 'var(--font-main)', color: 'var(--primary)', fontSize: '16px' }}>

@@ -108,8 +108,8 @@ export default function LiveMatch() {
     };
   };
 
-  const handleEnd = () => {
-    endMatch(matchId);
+  const handleEnd = (winnerTeam) => {
+    endMatch(matchId, winnerTeam);
     navigate('/');
   };
 
@@ -347,10 +347,15 @@ export default function LiveMatch() {
           ) : (
             <div className="card animate-in" style={{ borderColor: 'var(--danger)' }}>
               <p style={{ fontFamily: 'var(--font-retro)', fontSize: '11px', color: 'var(--danger)', marginBottom: '16px' }}>
-                END THIS MATCH?
+                WHO WON?
               </p>
               <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
-                <button onClick={handleEnd} className="btn btn-danger">YES, END IT</button>
+                <button onClick={() => handleEnd('team1')} className="btn" style={{ background: 'var(--primary)', color: '#fff', borderColor: 'var(--primary)' }}>
+                  🔴 TEAM 1
+                </button>
+                <button onClick={() => handleEnd('team2')} className="btn" style={{ background: 'var(--accent2)', color: '#fff', borderColor: 'var(--accent2)' }}>
+                  🔵 TEAM 2
+                </button>
                 <button onClick={() => setShowConfirmEnd(false)} className="btn btn-ghost">CANCEL</button>
               </div>
             </div>

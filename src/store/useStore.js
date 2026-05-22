@@ -44,6 +44,7 @@ const useStore = create(
           team2: team2Ids,
           events: [],
           completed: false,
+          winner: null,
         };
         set((s) => ({ matches: [...s.matches, match], activeMatch: match.id }));
         return match;
@@ -67,10 +68,10 @@ const useStore = create(
           ),
         })),
 
-      endMatch: (matchId) =>
+      endMatch: (matchId, winnerTeam) =>
         set((s) => ({
           matches: s.matches.map((m) =>
-            m.id === matchId ? { ...m, completed: true } : m
+            m.id === matchId ? { ...m, completed: true, winner: winnerTeam } : m
           ),
           activeMatch: null,
         })),
@@ -120,6 +121,8 @@ const useStore = create(
 
         const stats = {
           games: relevantMatches.length,
+          wins: 0,
+          losses: 0,
           points: 0,
           assists: 0,
           blocks: 0,
@@ -134,6 +137,14 @@ const useStore = create(
         };
 
         for (const match of relevantMatches) {
+          // Check if player won or lost
+          const isTeam1 = match.team1.includes(playerId);
+          const isTeam2 = match.team2.includes(playerId);
+          if (match.winner === 'team1' && isTeam1) stats.wins++;
+          if (match.winner === 'team2' && isTeam2) stats.wins++;
+          if (match.winner === 'team1' && isTeam2) stats.losses++;
+          if (match.winner === 'team2' && isTeam1) stats.losses++;
+
           for (const ev of match.events) {
             if (ev.playerId !== playerId) continue;
             switch (ev.type) {
